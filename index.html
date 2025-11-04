@@ -240,6 +240,39 @@
             }
         }
 	</style>
+	<style>
+		@page {
+		  size: A5 landscape;
+		  margin: 5mm;
+		}
+		
+		body {
+		  font-family: "Noto Sans TC", sans-serif;
+		  font-size: 11px;
+		}
+		
+		table {
+		  width: 100%;
+		  border-collapse: collapse;
+		  margin-bottom: 8px;
+		}
+		
+		td, th {
+		  border: 1px solid #000;
+		  padding: 2px 4px;
+		}
+		
+		h2 {
+		  margin: 4px 0 2px 0;
+		  font-size: 13px;
+		}
+		
+		@media print {
+		  /* 讓表格列印更乾淨 */
+		  a { text-decoration: none; color: #000; }
+		  .no-print { display: none !important; }
+		}
+	</style>
 </head>
 <body>
     <div class="container">
@@ -404,3 +437,4 @@
     </div>
 </body>
 </html>
+

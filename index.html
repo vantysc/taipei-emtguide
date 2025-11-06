@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>北市EMT到院前救護流程參考卡</title>
 	<style> 
-/* 全域設置 */
+	/* 全域設置 */
         * {
             margin: 0;
             padding: 0;
@@ -209,24 +209,9 @@
             }
         }
         
-        @media print {
-            body {
-                margin: 0;
-                padding: 2mm;
-                width: 210mm;
-                height: 148mm;
-            }
-            
-            .container {
-                page-break-inside: avoid;
-            }
-            
-            table {
-                box-shadow: none;
-            }
-        }
         
         @media screen {
+			body { font-size: 12px; }
             tr:hover {
                 background: rgba(33, 150, 243, 0.05);
                 transition: background 0.2s ease;
@@ -240,36 +225,41 @@
             }
         }
 		
-		@page {
-		  size: A5 landscape;
-		  margin: 5mm;
-		}
-		
-		body {
-		  font-family: "Noto Sans TC", sans-serif;
-		  font-size: 11px;
-		}
-		
-		table {
-		  width: 100%;
-		  border-collapse: collapse;
-		  margin-bottom: 8px;
-		}
-		
-		td, th {
-		  border: 1px solid #000;
-		  padding: 2px 4px;
-		}
-		
-		h2 {
-		  margin: 4px 0 2px 0;
-		  font-size: 13px;
-		}
 		
 		@media print {
-		  /* 讓表格列印更乾淨 */
-		  a { text-decoration: none; color: #000; }
-		  .no-print { display: none !important; }
+			/* 讓表格列印更乾淨 */
+			a { text-decoration: none; color: #000; }
+			.no-print { display: none !important; }
+	
+			@page { size: A5 landscape; margin: 5mm; }
+	
+			/* 列印清楚、維持彩色 */
+			body { 
+				font-size: 9px; 
+				background:white !important; 
+				-webkit-print-color-adjust: exact; 
+				print-color-adjust: exact; 
+				margin: 0;
+	            padding: 2mm;
+	        	width: 210mm;
+	        	height: 148mm;
+			}
+			
+			/* 表格列印不縮小 */
+			table { 
+				page-break-inside: avoid; 
+				width:100%;
+				box-shadow: none;
+			}
+		
+		  	/* 確保第二個 table 一定跳下一頁 */
+		  	.secondary-table { 
+			  page-break-before: always; 
+		  	}
+  
+            .container {
+                page-break-inside: avoid;
+        	}
 		}
 	</style>
 </head>
@@ -396,7 +386,10 @@
                 </td>
             </tr>
         </table>
-        
+
+		<!-- 將表格換頁 -->
+		<div style="page-break-before: always;"></div>
+		
         <!-- 二評流程表格 -->
         <table class="secondary-table">
             <tr>
@@ -436,5 +429,6 @@
     </div>
 </body>
 </html>
+
 
 

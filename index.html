@@ -46,19 +46,35 @@
 			color:#0d47a1;
 			font-weight:bold;
 			text-align:center;
+			border-right: 2px solid #1a237e;
+		}
+		.step-header {
+			width: 8%;
+			font-size: 9px;	
+			border-right: 2px solid #1a237e;
 		}
 		.trauma-col {
 			background:#ffebee;
 			color:#111;
+			width: 29%;
+			border-right: 1px solid #e57373;
 		}
 		.non-trauma-col {
 			background:#e3f2fd;
     		color:#111;
+			width: 33%;
+			border-right: 1px solid #64b5f6;
 		}
 		.notes-col {
 			background:#f7f7f7;
     		color:#111;
+			width: 30%;
+			font-size: 8px;
+			border-right: 1px solid #64b5f6;
 		}
+		.vital-signs-header {
+            width: 8%;
+        }
 		.vital-signs-col {
 			background:#e8f5e9;
 			text-align:center;
@@ -68,9 +84,39 @@
 		/* 不適用字樣 */
 		.crossed-out {
 		    background: #eeeeee;
+			position: relative;
 		    opacity: 0.6;
 		}
-		
+		.crossed-out::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: repeating-linear-gradient(
+                45deg,
+                transparent,
+                transparent 6px,
+                #999 6px,
+                #999 8px
+            );
+            opacity: 0.3;
+        } 
+        .crossed-out::after {
+            content: '不適用';
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            background: rgba(255,255,255,0.9);
+            padding: 2px 6px;
+            font-size: 7px;
+            color: #666;
+            border-radius: 2px;
+            font-weight: bold;
+        }
+
 		/* ---- 螢幕顯示(舒服) ---- */
 		@media screen and (min-width: 769px) {
 		    body {
@@ -295,6 +341,7 @@
     </div>
 </body>
 </html>
+
 
 
 

@@ -33,13 +33,21 @@
 		td {
 			text-align:left;
 		}
+		footer {
+			text-align:right; 
+			margin:4px 4px;
+			padding:4px 4px;
+			color:#555;
+			opacity: .75;
+		}
+		footer .c1 { color: #6955E7; font-weight:600; }  /* 霧紫 */
+		footer .c2 { color: #EDC948; font-weight:600; }  /* 溫黃 */
 		
 		/* ---- 色系 ---- */
 		th.table-title {
 			background:#1a237e;
 			color:#fff;
 			font-weight:bold;
-			font-size:11px;
 		}
 		.step-header,.vital-signs-header,.exam-header {
 			background:#bbdefb;
@@ -50,26 +58,24 @@
 		}
 		.step-header {
 			width: 8%;
-			font-size: 9px;	
 			border-right: 2px solid #1a237e;
 		}
 		.trauma-col {
 			background:#ffebee;
 			color:#111;
-			width: 29%;
+			width: 30%;
 			border-right: 1px solid #e57373;
 		}
 		.non-trauma-col {
 			background:#e3f2fd;
     		color:#111;
-			width: 33%;
+			width: 34%;
 			border-right: 1px solid #64b5f6;
 		}
 		.notes-col {
 			background:#f7f7f7;
     		color:#111;
-			width: 30%;
-			font-size: 8px;
+			width: 28%;
 			border-right: 1px solid #64b5f6;
 		}
 		.vital-signs-header {
@@ -172,6 +178,9 @@
 		  	table {
 				box-shadow:none;
 		  	}
+			footer { 
+				opacity: .6; 
+			}
 		  	.secondary-table {
 			  	page-break-before:always;
 			}
@@ -257,8 +266,8 @@
                     <div class="content-line">膚色是否蒼白、發紺或異常？</div>
                 </td>
                 <td>
-                    <div class="content-line">創傷評估完記得量血氧</div>
-                    <div class="content-line">非創評估完記得量血壓、血氧</div>
+                    <div class="content-line">(創傷)評估完記得量血氧</div>
+                    <div class="content-line">(非創)評估完記得量血壓、血氧</div>
                 </td>
             </tr>
             <tr>
@@ -326,7 +335,8 @@
                     <div class="content-line">背部臀部是否瘀傷、傷口、壓痛？</div>
                 </td>
                 <td class="non-trauma-col">
-                    <div class="content-line">先生有感覺到我碰你的手嗎、手可以動一下嗎？有感覺到我碰你的腳嗎、腳可以動一下嗎？</div>
+                    <div class="content-line">有感覺到我碰你的手嗎、手可以動一下嗎？</div>
+                    <div class="content-line">有感覺到我碰你的腳嗎、腳可以動一下嗎？</div>
                     <div class="content-line">檢查氣管是否偏移？</div>
                     <div class="content-line">頸靜脈是否怒張或塌陷？</div>
                     <div class="content-line">視診呼吸起伏是否對稱？胸部是否紅疹、紫斑？</div>
@@ -339,13 +349,17 @@
             </tr>
         </table>
     </div>
-
-    <footer style="text-align:right; margin-top:30px; font-size:8px; color:#666;">
-        Ver. designed on 2025/06/25.
+    <footer>
+		<div class="footer-line">
+	    	Ver. designed <span class="c1">on</span> <span class="c2">2025</span>/<span class="c2">06</span>/<span class="c2">25</span>.
+	  	</div>
+	  	<div class="footer-line">
+	    	供本年度北市新進救護義消參考。
+	  	</div>
     </footer>
-
 </body>
 </html>
+
 
 
 

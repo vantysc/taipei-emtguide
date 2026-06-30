@@ -1,0 +1,362 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>北市EMT到院前救護流程參考卡</title>
+	<style>
+		* {
+			margin:0;
+			padding:0;
+			box-sizing:border-box;
+		}
+		body {
+			font-family:'Microsoft JhengHei','Noto Sans TC',sans-serif;
+			color:#333;
+			background:white;
+		}
+		table {
+			width:100%;
+			border-collapse:collapse;
+			font-size:8px;
+			border:1px solid #1a237e;
+		}
+		th, td {
+			border:1px solid #666;
+			padding:2mm;
+			vertical-align:top;
+			text-align:left;
+		}
+		th {
+			text-align:center;
+		}
+		td {
+			text-align:left;
+		}
+		footer {
+			text-align:right;
+			margin:4px 4px;
+			padding:4px 4px;
+			color:#555;
+			opacity: .8;
+		}
+		footer .c1 { color: #50A14F; font-weight:600; }
+		footer .c2 { color: #0184BB; font-weight:600; }
+		footer .c3 { color: #986801; font-weight:600; }
+
+		/* ---- 色系 ---- */
+		th.table-title {
+			background:#1a237e;
+			color:#fff;
+			font-weight:bold;
+		}
+		.step-header,.vital-signs-header,.exam-header {
+			background:#bbdefb;
+			color:#0d47a1;
+			font-weight:bold;
+			text-align:center;
+			border-right: 2px solid #1a237e;
+		}
+		.step-header {
+			width: 7%;
+		}
+		.trauma-col {
+			background:#ffebee;
+			color:#111;
+			width: 29%;
+			border-right: 1px solid #e57373;
+		}
+		.non-trauma-col {
+			background:#e3f2fd;
+    		color:#111;
+			width: 34%;
+			border-right: 1px solid #64b5f6;
+		}
+		.notes-col {
+			background:#f7f7f7;
+    		color:#111;
+			width: 30%;
+			border-right: 1px solid #64b5f6;
+		}
+		.vital-signs-header {
+            width: 8%;
+        }
+		.vital-signs-col {
+			background:#e8f5e9;
+			text-align:center;
+			font-weight:bold;
+			color:#2e7d32;
+		}
+		/* 不適用字樣 */
+		.crossed-out {
+		    background: #eeeeee;
+			position: relative;
+		    opacity: 0.6;
+		}
+		.crossed-out::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: repeating-linear-gradient(
+                45deg,
+                transparent,
+                transparent 6px,
+                #999 6px,
+                #999 8px
+            );
+            opacity: 0.3;
+        }
+        .crossed-out::after {
+            content: '不適用';
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            background: rgba(255,255,255,0.9);
+            padding: 2px 6px;
+            font-size: 7px;
+            color: #666;
+            border-radius: 2px;
+            font-weight: bold;
+        }
+
+		/* ---- 螢幕顯示(舒服) ---- */
+		@media screen and (min-width: 769px) {
+		    body {
+		        width: auto;
+		        height: auto;
+		        padding: 20px;
+		        font-size: 14px;   /* 字大一點、桌面易讀 */
+		    }
+		    table {
+		        font-size: 13px;
+		        width: 100%;
+		        max-width: 1200px;
+		        margin: 0 auto;
+		    }
+		    .container {
+		        width: 100%;
+		        max-width: 1200px;
+		        margin: 0 auto;
+		        gap: 20px;
+		    }
+		}
+		@media screen {
+		  body {
+			  font-size:12px;
+			  padding:10px;
+			  max-width:1000px;
+			  margin:0 auto;
+		  }
+		  table {
+			  box-shadow:0 1px 4px rgba(0,0,0,.15);
+			  border-radius:4px;
+			  overflow:hidden;
+		  }
+		  tr:hover {
+			  background:rgba(33,150,243,.05);
+		  }
+		}
+
+		/* ---- 列印 ---- */
+		@media print{
+			@page {
+				size:A5 landscape;
+				margin:4mm;
+		  	}
+			body {
+				font-size:9px;
+				padding:2mm;
+		    	-webkit-print-color-adjust:exact;
+				print-color-adjust:exact;
+		    	width:210mm;
+				/* height:148mm; */
+		  	}
+		  	table {
+				box-shadow:none;
+		  	}
+			footer {
+				opacity: .6;
+			}
+		  	.secondary-table {
+			  	page-break-before:always;
+			}
+		}
+	</style>
+</head>
+<body>
+    <div class="container">
+        <!-- 初評流程表格 -->
+        <table class="primary-table">
+            <tr>
+                <th colspan="4" class="table-title">🚑 初評流程 (Primary Assessment)</th>
+            </tr>
+            <tr>
+                <th class="step-header">步驟</th>
+                <th class="trauma-col">創傷 (Trauma)</th>
+                <th class="non-trauma-col">非創傷 (Non-Trauma)</th>
+                <th class="notes-col">備註</th>
+            </tr>
+            <tr>
+                <td class="step-header">
+                    現場評估
+                </td>
+                <td>
+                    <div class="content-line">待會我評估你問病史</div>
+                    <div class="content-line">評估現場是否安全？</div>
+                    <div class="content-line">自我保護，戴手套、口罩，必要時戴護目鏡、穿防護衣</div>
+                    <div class="content-line">確認現場患者是否為一人？</div>
+                </td>
+                <td>
+                    <div class="content-line">待會我評估你問病史</div>
+                    <div class="content-line">評估現場是否安全？</div>
+                    <div class="content-line">自我保護，戴手套、口罩，必要時戴護目鏡、穿防護衣</div>
+                    <div class="content-line">確認現場患者是否為一人？</div>
+                </td>
+                <td></td>
+            </tr>
+            <tr>
+                <td class="step-header">X／意識</td>
+                <td>
+                    <div class="content-line">快速目視有無大出血？</div>
+                    <div class="content-line">先生您好我們是119救護人員，我們懷疑您頸椎有受傷，我請副手幫您做保護</div>
+                    <div class="content-line">先生先生(叫他)</div>
+                    <div class="content-line">先生先生(拍他)</div>
+                </td>
+                <td>
+                    <div class="content-line">先生您好我們是119救護人員</div>
+                    <div class="content-line">先生先生(叫他)</div>
+                    <div class="content-line">先生先生(拍他)</div>
+                </td>
+                <td>
+                    <div class="content-line">(創傷)請副手做頸椎保護</div>
+                    <div class="content-line">(創傷)拍他沒反應，主手同時評估呼吸和脈搏</div>
+                    <div class="content-line">(非創)拍他沒反應，副手同時評估呼吸和脈搏、主手懸停手</div>
+                </td>
+            </tr>
+            <tr>
+                <td class="step-header">A</td>
+                <td rowspan="2">
+                    <div class="content-line">同時評估呼吸有無鼾聲雜音、呼吸深淺快慢？</div>
+                </td>
+                <td rowspan="2">
+                    <div class="content-line">同時評估呼吸有無鼾聲雜音、呼吸深淺快慢？</div>
+                </td>
+                <td rowspan="2"></td>
+            </tr>
+            <tr>
+                <td class="step-header">B</td>
+            </tr>
+            <tr>
+                <td class="step-header">C</td>
+                <td>
+                    <div class="content-line">檢查兩側橈動脈是否摸得到、對等？</div>
+                    <div class="content-line">肢體末端是否濕冷？</div>
+                    <div class="content-line">CRT是否 ≧ 2秒？</div>
+                    <div class="content-line">膚色是否蒼白、發紺或異常？</div>
+                    <div class="content-line">再次目視有無出血性傷口？</div>
+                </td>
+                <td>
+                    <div class="content-line">檢查兩側橈動脈是否摸得到、對等？</div>
+                    <div class="content-line">肢體末端是否濕冷？</div>
+                    <div class="content-line">CRT是否 ≧ 2秒？</div>
+                    <div class="content-line">膚色是否蒼白、發紺或異常？</div>
+                </td>
+                <td>
+                    <div class="content-line">(創傷)評估完記得量血氧</div>
+                    <div class="content-line">(非創)評估完記得量血壓、血氧</div>
+                </td>
+            </tr>
+            <tr>
+                <td class="step-header">D</td>
+                <td>
+                    <div class="content-line">先生你可以說一句話、手配合我們動作嗎？</div>
+                    <div class="content-line">檢查瞳孔是否等大、是否對光有反應？</div>
+                    <div class="content-line">有感覺到我碰你的手嗎、手可以動一下嗎？</div>
+                    <div class="content-line">有感覺到我碰你的腳嗎、腳可以動一下嗎？</div>
+                </td>
+                <td class="crossed-out"></td>
+                <td></td>
+            </tr>
+            <tr>
+                <td class="step-header">E</td>
+                <td>
+                    <div class="content-line">檢查氣管是否偏移？</div>
+                    <div class="content-line">頸靜脈是否怒張或塌陷？</div>
+                    <div class="content-line">頸椎是否壓痛異常？</div>
+                    <div class="content-line">檢查頭.頸.胸.腹.骨盆.肢體是否有致命性傷口？</div>
+                    <div class="content-line">骨盆是否穩固？</div>
+                    <div class="content-line">必要時暴露，注意保暖</div>
+                </td>
+                <td class="crossed-out"></td>
+                <td>
+		<div class="content-line">翻身記得檢查背部</div>
+		</td>
+            </tr>
+            <tr>
+                <td class="step-header">輔助檢查</td>
+                <td>
+                    <div class="content-line">血壓、體溫、瞳孔、肺音、辛辛那提</div>
+                </td>
+                <td>
+                    <div class="content-line">血糖、體溫、瞳孔、肺音、辛辛那提、心電圖、現病史</div>
+                </td>
+                <td>
+                    <div class="content-line">(非創)意識不清測血糖</div>
+                    <div class="content-line">(創傷)判斷頸圈適應症、是否啟動重大創傷？</div>
+                    <div class="content-line">判斷是否ALS危急個案，條件有哪些？</div>
+                </td>
+            </tr>
+        </table>
+
+        <!-- 二評流程表格 -->
+        <table class="secondary-table">
+            <tr>
+                <th colspan="3" class="table-title">🔍 二評流程 (Secondary Assessment)</th>
+            </tr>
+            <tr>
+                <td class="vital-signs-header">八大生命徵象</td>
+                <td class="vital-signs-col" colspan="2">意識、呼吸、脈搏、血壓、瞳孔、體溫、膚色、血氧</td>
+            </tr>
+            <tr>
+                <td class="exam-header">理學檢查</td>
+                <td class="trauma-col">
+                    <div class="content-line">檢查臉和頭部是否傷口或對稱？</div>
+                    <div class="content-line">檢查是否耳漏、鼻漏？</div>
+                    <div class="content-line">視診呼吸起伏是否對稱？胸部是否瘀傷、傷口？</div>
+                    <div class="content-line">觸診是否壓痛？</div>
+                    <div class="content-line">聽診兩側肺音</div>
+                    <div class="content-line">腹部是否瘀傷、傷口、鼓脹</div>
+                    <div class="content-line">觸診是否壓痛？</div>
+                    <div class="content-line">檢查上肢是否瘀傷、傷口、壓痛、畸形、是否對稱？</div>
+                    <div class="content-line">檢查下肢是否瘀傷、傷口、壓痛、畸形、是否對稱？</div>
+                    <div class="content-line">背部臀部是否瘀傷、傷口、壓痛？</div>
+                </td>
+                <td class="non-trauma-col">
+                    <div class="content-line">有感覺到我碰你的手嗎、手可以動一下嗎？</div>
+                    <div class="content-line">有感覺到我碰你的腳嗎、腳可以動一下嗎？</div>
+                    <div class="content-line">檢查氣管是否偏移？</div>
+                    <div class="content-line">頸靜脈是否怒張或塌陷？</div>
+                    <div class="content-line">視診呼吸起伏是否對稱？胸部是否紅疹、紫斑？</div>
+                    <div class="content-line">聽診兩側肺音</div>
+                    <div class="content-line">腹部是否紅疹、紫斑、針孔、腫脹？</div>
+                    <div class="content-line">觸診壓痛、反彈痛</div>
+                    <div class="content-line">雙手是否紅疹、紫斑、針孔、浮腫、水腫？</div>
+                    <div class="content-line">雙腳是否紅疹、紫斑、針孔、浮腫、水腫？</div>
+                </td>
+            </tr>
+        </table>
+    </div>
+    <footer>
+		<div class="footer-line">
+	    	Ver. <span class="c1">designed</span> <span class="c2">on</span> <span class="c3">2025</span>/<span class="c3">06</span>/<span class="c3">25</span>.
+	  	</div>
+	  	<div class="footer-line">
+	    	供本年度北市新進救護義消參考
+	  	</div>
+    </footer>
+</body>
+</html>

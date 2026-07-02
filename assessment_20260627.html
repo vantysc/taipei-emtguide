@@ -198,8 +198,8 @@
 		}
 
 		/* 列印紙張：A5（兩頁）/ A4（單頁）可切換 */
-		@page a5page { size:A5 landscape; margin:15px 3px; }
-		@page a4page { size:A4 landscape; margin:15px; }
+		@page a5page { size:A5 landscape; margin:5mm; }
+		@page a4page { size:A4 landscape; margin:5mm; }
 
 		/* ---- 列印 ---- */
 		@media print{
@@ -210,7 +210,7 @@
 			body.paper-a4 .secondary-table { page-break-before:auto; }
 			@page {
 				size:landscape;
-				margin:4mm;
+				margin:5mm;
 		  	}
 			body {
 				font-size:12px;

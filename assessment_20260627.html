@@ -21,6 +21,7 @@
 			font-size:8px;
 			border:1px solid #0d6068;
 		}
+		.primary-table, .secondary-table { margin-bottom:6mm; }   /* 初評、次評表格統一下間距 */
 		th, td {
 			border:1px solid #666;
 			padding:2mm;
@@ -58,24 +59,24 @@
 			border-right: 2px solid #0d6068;
 		}
 		.step-header {
-			width: 6%;
+			width: 8%;
 		}
 		.trauma-col {
 			background:#e2f4f0;
 			color:#111;
-			width: 36%;
+			width: 31%;
 			border-right: 1px solid #5cbfb0;
 		}
 		.non-trauma-col {
 			background:#e6f2fb;
     		color:#111;
-			width: 36%;
+			width: 29%;
 			border-right: 1px solid #7cc0e0;
 		}
 		.notes-col {
 			background:#f2f7f8;
     		color:#111;
-			width: 22%;
+			width: 30%;
 			border-right: 1px solid #bcd3d8;
 		}
 		.vital-signs-header {
@@ -86,6 +87,18 @@
 			text-align:center;
 			font-weight:bold;
 			color:#0e7a6b;
+		}
+
+		/* 現場評估細項：灰字，且永遠比「現場評估」小 1px（隨 RWD 縮放） */
+		.scene-note {
+			color:#888;
+			font-weight:normal;
+			font-size:calc(1em - 1px);
+		}
+
+		/* 括號補充標記（外傷／非外傷／呼喚／輕拍）：灰字，比照 scene-note */
+		.paren-note {
+			color:#888;
 		}
 		/* 不適用字樣 */
 		.crossed-out {
@@ -122,6 +135,29 @@
             border-radius: 2px;
             font-weight: bold;
         }
+
+		/* 螢幕上的列印工具列（列印時自動隱藏） */
+		.print-bar {
+			display:flex;
+			flex-wrap:wrap;
+			align-items:center;
+			gap:8px;
+			max-width:1000px;
+			margin:0 auto 14px;
+			font-size:13px;
+		}
+		.print-bar-label { color:#0d6068; font-weight:600; }
+		.print-bar button {
+			font-family:inherit;
+			font-size:13px;
+			padding:6px 14px;
+			border:1px solid #0e9384;
+			background:#e8f6f4;
+			color:#0d6068;
+			border-radius:6px;
+			cursor:pointer;
+		}
+		.print-bar button:hover { background:#d3efe6; }
 
 		/* ---- 螢幕顯示(舒服) ---- */
 		@media screen and (min-width: 769px) {
@@ -161,19 +197,33 @@
 		  }
 		}
 
+		/* 列印紙張：A5（兩頁）/ A4（單頁）可切換 */
+		@page a5page { size:A5 landscape; margin:15px 3px; }
+		@page a4page { size:A4 landscape; margin:15px; }
+
 		/* ---- 列印 ---- */
 		@media print{
+			.print-bar { display:none; }
+			.container, footer { page:a5page; }
+			body.paper-a4 .container,
+			body.paper-a4 footer { page:a4page; }
+			body.paper-a4 .secondary-table { page-break-before:auto; }
 			@page {
-				size:A5 landscape;
+				size:landscape;
 				margin:4mm;
 		  	}
 			body {
-				font-size:9px;
-				padding:2mm;
+				font-size:12px;
+				padding:0;
 		    	-webkit-print-color-adjust:exact;
 				print-color-adjust:exact;
-		    	width:210mm;
+		    	width:auto;
 				/* height:148mm; */
+		  	}
+			th, td {
+				padding:0.3mm 1mm;
+				font-size:12px;
+				line-height:1.0;
 		  	}
 		  	table {
 				box-shadow:none;
@@ -188,6 +238,11 @@
 	</style>
 </head>
 <body>
+    <div class="print-bar">
+        <span class="print-bar-label">列印紙張：</span>
+        <button type="button" onclick="printAs('a5')">A5 · 分為兩頁</button>
+        <button type="button" onclick="printAs('a4')">A4 · 併為單頁</button>
+    </div>
     <div class="container">
         <!-- 初步評估表格 -->
         <table class="primary-table">
@@ -196,29 +251,29 @@
             </tr>
             <tr>
                 <th class="step-header">步驟</th>
-                <th class="trauma-col">外傷 (Trauma)</th>
+                <th class="trauma-col">外　傷 (Trauma)</th>
                 <th class="non-trauma-col">非外傷 (Non-Trauma)</th>
                 <th class="notes-col">備註</th>
             </tr>
             <tr>
                 <td class="step-header">
                     現場評估
-                    <div class="content-line">(任務分工</div>
-                    <div class="content-line">現場安全</div>
-                    <div class="content-line">自我保護</div>
-                    <div class="content-line">能量需求)</div>
+                    <div class="content-line scene-note">(任務分工 </div>
+                    <div class="content-line scene-note"> 現場安全 </div>
+                    <div class="content-line scene-note"> 自我保護 </div>
+                    <div class="content-line scene-note"> 能量需求)</div>
                 </td>
                 <td>
                     <div class="content-line">待會我評估你問病史</div>
                     <div class="content-line">評估現場是否安全？</div>
                     <div class="content-line">自我保護戴手套口罩</div>
-                    <div class="content-line">確認現場患者是否為一人？</div>
+                    <div class="content-line">確認患者是否為一人？</div>
                 </td>
                 <td>
                     <div class="content-line">待會我評估你問病史</div>
                     <div class="content-line">評估現場是否安全？</div>
                     <div class="content-line">自我保護戴手套口罩</div>
-                    <div class="content-line">確認現場患者是否為一人？</div>
+                    <div class="content-line">確認患者是否為一人？</div>
                 </td>
                 <td></td>
             </tr>
@@ -227,18 +282,17 @@
                 <td>
                     <div class="content-line">先生您好我們是119救護人員，我們懷疑您頸椎有受傷，我請副手幫您做保護</div>
                     <div class="content-line">快速目視有無大出血？</div>
-                    <div class="content-line">先生先生(呼喚)</div>
-                    <div class="content-line">先生先生(輕拍)</div>
+                    <div class="content-line">先生先生 <span class="paren-note">(呼喚)</span></div>
+                    <div class="content-line">先生先生 <span class="paren-note">(輕拍)</span></div>
                 </td>
                 <td>
                     <div class="content-line">先生您好我們是119救護人員</div>
-                    <div class="content-line">先生先生(呼喚)</div>
-                    <div class="content-line">先生先生(輕拍)</div>
+                    <div class="content-line">先生先生 <span class="paren-note">(呼喚)</span></div>
+                    <div class="content-line">先生先生 <span class="paren-note">(輕拍)</span></div>
                 </td>
                 <td>
-                    <div class="content-line">(外傷)請副手做頸椎減移</div>
-                    <div class="content-line">(外傷)輕拍沒反應，主手同時評估呼吸和脈搏</div>
-                    <div class="content-line">(非外傷)輕拍沒反應，副手同時評估呼吸和脈搏、主手懸停手</div>
+                    <div class="content-line"><span class="paren-note">(外　傷)</span> 輕拍沒反應，主手評估呼吸脈搏</div>
+                    <div class="content-line"><span class="paren-note">(非外傷)</span> 輕拍沒反應，副手評估呼吸脈搏、主手懸停手</div>
                 </td>
             </tr>
             <tr>
@@ -287,15 +341,15 @@
                 <td class="step-header">E</td>
                 <td>
                     <div class="content-line">評估頭.頸.胸.腹.骨盆.肢體是否有致命性傷口？</div>
-                    <div class="content-line">氣管是否偏移</div>
+                    <div class="content-line">氣管是否偏移？</div>
                     <div class="content-line">頸靜脈是否怒張或塌陷？</div>
                     <div class="content-line">頸椎是否壓痛異常？</div>
-                    <div class="content-line">是否有皮下氣腫</div>
+                    <div class="content-line">是否有皮下氣腫？</div>
                     <div class="content-line">必要時暴露，注意保暖</div>
                 </td>
                 <td class="crossed-out"></td>
                 <td>
-		<div class="content-line">翻身記得評估背部</div>
+		<div class="content-line"><span class="paren-note">(外　傷)</span> 翻身時評估背部</div>
 		</td>
             </tr>
             <tr>
@@ -307,9 +361,9 @@
                     <div class="content-line">血壓、血氧、體溫、血糖、瞳孔大小、聽診肺音、辛辛那提、心電圖</div>
                 </td>
                 <td>
-                    <div class="content-line">(非外傷)意識不清測血糖</div>
-                    <div class="content-line">(外傷)判斷頸圈適應症、是否啟動重大外傷？</div>
-                    <div class="content-line">判斷是否ALS危急個案，條件有哪些？</div>
+                    <div class="content-line">是否ALS危急個案？</div>
+				    <div class="content-line"><span class="paren-note">(外　傷)</span> 是否頸圈適應症、是否重大外傷？</div>
+                    <div class="content-line"><span class="paren-note">(非外傷)</span> 意識不清測血糖</div>
                 </td>
             </tr>
         </table>
@@ -320,32 +374,32 @@
                 <th colspan="3" class="table-title">🔍 次級評估 (Secondary Assessment)</th>
             </tr>
             <tr>
-                <td class="vital-signs-header">八大生命徵象</td>
+                <td class="vital-signs-header">八大徵象</td>
                 <td class="vital-signs-col" colspan="2">意識、呼吸、脈搏、血壓、瞳孔、體溫、膚色、血氧</td>
             </tr>
             <tr>
                 <td class="exam-header">理學檢查</td>
-                <td class="trauma-col">
+                <td>
                     <div class="content-line">評估臉和頭部是否傷口或對稱？</div>
                     <div class="content-line">評估是否耳漏、鼻漏？</div>
                     <div class="content-line">視診呼吸起伏是否對稱？胸部是否瘀傷、傷口？</div>
                     <div class="content-line">觸診是否壓痛？</div>
                     <div class="content-line">聽診兩側肺音</div>
-                    <div class="content-line">腹部是否瘀傷、傷口、鼓脹</div>
+                    <div class="content-line">腹部是否瘀傷、傷口、鼓脹？</div>
                     <div class="content-line">觸診是否壓痛？</div>
                     <div class="content-line">評估上肢是否瘀傷、傷口、壓痛、畸形、是否對稱？</div>
                     <div class="content-line">評估下肢是否瘀傷、傷口、壓痛、畸形、是否對稱？</div>
                     <div class="content-line">背部臀部是否瘀傷、傷口、壓痛？</div>
                 </td>
-                <td class="non-trauma-col">
+                <td>
                     <div class="content-line">有感覺到我碰你的手嗎、手可以動一下嗎？</div>
                     <div class="content-line">有感覺到我碰你的腳嗎、腳可以動一下嗎？</div>
-                    <div class="content-line">氣管是否偏移</div>
+                    <div class="content-line">氣管是否偏移？</div>
                     <div class="content-line">頸靜脈是否怒張或塌陷？</div>
                     <div class="content-line">視診呼吸起伏是否對稱？胸部是否紅疹、紫斑？</div>
                     <div class="content-line">聽診兩側肺音</div>
                     <div class="content-line">腹部是否紅疹、紫斑、針孔、腫脹？</div>
-                    <div class="content-line">觸診壓痛、反彈痛</div>
+                    <div class="content-line">觸診是否壓痛？</div>
                     <div class="content-line">雙手是否紅疹、紫斑、針孔、浮腫、水腫？</div>
                     <div class="content-line">雙腳是否紅疹、紫斑、針孔、浮腫、水腫？</div>
                 </td>
@@ -360,5 +414,12 @@
 	    	供本年度北市新進救護義消參考
 	  	</div>
     </footer>
+    <script>
+        function printAs(size) {
+            document.body.classList.remove('paper-a4', 'paper-a5');
+            document.body.classList.add('paper-' + size);
+            window.print();
+        }
+    </script>
 </body>
 </html>
